@@ -10,7 +10,6 @@ interface ClickHouseResultSet<T> {
 interface Statistics {
   elapsed: number;
   rows_read: number;
-
   bytes_read: number;
 }
 

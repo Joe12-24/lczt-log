@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import QueryPage from './components/QueryPage.vue'
+
 </script>
 
 <template>
