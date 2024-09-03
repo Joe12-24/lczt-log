@@ -1,0 +1,24 @@
+{
+
+  "compilerOptions": {
+        // ...other codes
+        "baseUrl": "./",
+        "paths": {
+              "@/*": ["src/*"]
+          },
+        "types": ["element-plus/global"]
+    },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+   "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "auto-imports.d.ts",  // 新增
+        "components.d.ts"  // 新增
+    ]
+}
