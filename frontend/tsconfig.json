@@ -1,12 +1,15 @@
 {
 
   "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
         // ...other codes
-        "baseUrl": "./",
-        "paths": {
-              "@/*": ["src/*"]
-          },
-        "types": ["element-plus/global"]
+    "baseUrl": "./",
+    "paths": {
+        "@/*": ["src/*"]
+    },
+    "types": ["element-plus/global","node"]
     },
   "files": [],
   "references": [
