@@ -5,7 +5,7 @@ import QueryPage from './components/QueryPage.vue'
 
 <template>
 
-  <QueryPage msg="Vite + Vue" />
+  <QueryPage msg="lczt日志平台" />
 </template>
 
 <style scoped>

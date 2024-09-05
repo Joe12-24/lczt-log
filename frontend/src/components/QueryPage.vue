@@ -108,6 +108,6 @@ const handleSubmit = () => {
 
 /* Optional: Ensure the table doesn't overflow */
 .table-container .el-table {
-  min-width: 600px;
+  min-width: 1000px;
 }
 </style>
