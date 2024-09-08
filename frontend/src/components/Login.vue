@@ -1,83 +1,125 @@
 <template>
-
-  <div class="bg-gradient-to-tr from-sky-200 to-sky-500 ">
-    <section id="login" class="p-4 flex flex-col justify-center min-h-screen max-w-md mx-auto">
-      <div class="p-6 bg-sky-100 rounded">
-        <div class="flex items-center justify-center text-4xl font-black text-sky-900 m-3">
-          <img :src="faviconUrl" class="mr-3 w-10 h-10" alt="Favicon" />
-          <h1 class="tracking-wide">后台日志查询</h1>
-        </div>
-        <form id="login_form" @submit.prevent="handleLogin" class="flex flex-col justify-center">
-          <label class="text-sm font-medium">用户</label>
-          <input v-model="username" class="mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-          focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" placeholder="admin" required>
-
-          <label class="text-sm font-medium">密码</label>
-          <input v-model="password" class="mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-          focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:invalid:border-red-500 focus:invalid:ring-red-500" type="password" placeholder="********" required>
-
-          <button class="px-4 py-1.5 rounded-md shadow-lg bg-sky-600 font-medium text-gray-100 block hover:bg-sky-700 transition duration-300" type="submit">
-            <span v-if="isChecking">Checking ...</span>
-            <span v-else>登录</span>
-          </button>
-        </form>
+  <div class="base-container">
+    <!-- 查询框居中对齐并设置固定尺寸 -->
+    <div class="query-box">
+      <!-- 在标题前面加图标 -->
+      <div class="title-container">
+        <el-icon><i class="el-icon-document"></i></el-icon>
+        <h1 class="tracking-wide">后台日志查询</h1>
       </div>
-    </section>
+
+      <!-- 表单部分 -->
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" @click="submitForm">登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, reactive, ref } from "vue";
+import { ElForm } from "element-plus";
+
+interface RuleForm {
+  username: string;
+  password: string;
+}
 
 export default defineComponent({
-  name: 'Login',
+  name: "LoginForm",
   setup() {
-    const router = useRouter();
-    const username = ref('');
-    const password = ref('');
-    const isChecking = ref(false);
-    const faviconUrl = require('@/assets/favicon.ico'); // 假设你把favicon.ico放在了assets目录下
+    // 表单数据
+    const ruleForm = reactive<RuleForm>({
+      username: "",
+      password: ""
+    });
 
-    const handleLogin = async () => {
-      isChecking.value = true;
+    // 表单验证规则
+    const rules = {
+      username: [
+        { required: true, message: "请输入用户名", trigger: "blur" }
+      ],
+      password: [
+        { required: true, message: "请输入密码", trigger: "blur" }
+      ]
+    };
 
-      try {
-        const response = await fetch('/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: username.value,
-            password: password.value
-          })
-        });
+    // 表单引用
+    const ruleFormRef = ref<InstanceType<typeof ElForm>>();
 
-        if (response.ok) {
-          router.push({ name: 'Home' }); // 登录成功，跳转到主页
+    // 提交表单方法
+    const submitForm = () => {
+      ruleFormRef.value?.validate((valid) => {
+        if (valid) {
+          // 发送登录请求
+          console.log("登录成功", ruleForm);
+          // 这里可以执行登录逻辑，例如发送 API 请求
         } else {
-          alert('Login failed. Please check your credentials.');
+          console.log("表单验证失败");
+          return false;
         }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
-      } finally {
-        isChecking.value = false;
-      }
+      });
     };
 
     return {
-      username,
-      password,
-      isChecking,
-      faviconUrl,
-      handleLogin
+      ruleForm,
+      rules,
+      ruleFormRef,
+      submitForm
     };
   }
 });
 </script>
 
 <style scoped>
-/* 保持原有的样式不变 */
+.base-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.query-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.title-container h1 {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+.demo-ruleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.el-form-item {
+  margin-bottom: 15px;
+}
+
+.el-button {
+  width: 100%;
+}
 </style>

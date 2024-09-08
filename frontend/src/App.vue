@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import QueryPage from './components/QueryPage.vue'
+// import QueryPage from './components/QueryPage.vue'
+import Login from './components/Login.vue'
 
 </script>
 
 <template>
 
-  <QueryPage msg="lczt日志平台" />
+  <Login msg="lczt日志平台" />
 </template>
 
 <style scoped>
