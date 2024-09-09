@@ -72,7 +72,7 @@
         start-placeholder="Start Date"
         end-placeholder="End Date"
         :default-time="defaultTime2"
-        style="width: 300px"
+        style="width: 290px"
       />
     </el-form-item>
 
