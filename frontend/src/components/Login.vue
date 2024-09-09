@@ -32,6 +32,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import http from '@/http'; // 确保路径正确
 import axios from 'axios';
 import { useRouter } from 'vue-router'; // 导入 useRouter
 const formInline = ref({
@@ -44,31 +45,33 @@ const router = useRouter(); // 使用 useRouter 获取 router 实例
 const login = async () => {
   if (formInline.value.username && formInline.value.password) {
     try {
-      const response = await axios.post('http://127.0.0.1:8080/login', new URLSearchParams({
-        username: formInline.value.username,
-        password: formInline.value.password
-      }), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+      const response = await http.post(
+        '/login',
+        new URLSearchParams({
+          username: formInline.value.username,
+          password: formInline.value.password
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
         }
-      });
+      );
 
-      // Directly handle the response data as the token
-      const token = response.data;
+      const { code, message, data } = response.data;
 
-      if (token) {
-        localStorage.setItem('authToken', token);
-        // Redirect or perform other actions
-        await router.push('/query');
+      if (code === 200 && data) {
+        localStorage.setItem('authToken', data); // 存储 token
+        await router.push('/query'); // 使用 router 进行页面跳转
       } else {
-        errorMessage.value = 'Invalid credentials';
+        errorMessage.value = message || 'Login failed'; // 显示错误信息
       }
     } catch (error) {
       console.error('Login error:', error);
-      errorMessage.value = 'An error occurred while logging in';
+      errorMessage.value = 'An error occurred while logging in'; // 处理请求错误
     }
   } else {
-    errorMessage.value = 'Username and Password cannot be empty';
+    errorMessage.value = 'Username and Password cannot be empty'; // 显示表单验证错误
   }
 };
 </script>

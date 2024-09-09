@@ -92,6 +92,16 @@ import type { FormInstance } from 'element-plus'
 const value1 = ref('')
 const value2 = ref('')
 const formRef = ref<FormInstance>()
+const sourceMap = {
+  newMall: "凌志接口",
+  newMallTsdk: "综合理财",
+  xiaodai: "小贷",
+};
+
+const statusMap = {
+  1: "正常",
+  2: "异常",
+};
 
 const defaultTime1 = new Date(2000, 1, 1, 12, 0, 0) // '12:00:00'
 const defaultTime2: [Date, Date] = [

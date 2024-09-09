@@ -20,7 +20,7 @@ const router = createRouter({
     }
   ]
 });
-
+//
 // // 全局导航守卫
 // router.beforeEach((to, from, next) => {
 //   const isAuthenticated = !!localStorage.getItem('user'); // 简单的认证检查
