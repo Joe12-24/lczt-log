@@ -1,14 +1,10 @@
-<script setup lang="ts">
-// import QueryPage from './components/QueryPage.vue'
-import Login from './components/Login.vue'
-
-</script>
-
 <template>
-
-  <Login msg="lczt日志平台" />
+  <router-view />
 </template>
 
-<style scoped>
+<script setup lang="ts">
+</script>
 
+<style scoped>
+/* 这里可以添加你的样式 */
 </style>

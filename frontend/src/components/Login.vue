@@ -7,90 +7,57 @@
         <el-icon><i class="el-icon-document"></i></el-icon>
         <h1 class="tracking-wide">后台日志查询</h1>
       </div>
-
-      <!-- 表单部分 -->
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item>
-          <el-button type="primary" @click="submitForm">登录</el-button>
-        </el-form-item>
-      </el-form>
+      <div class="form-container">
+        <el-form :inline="true"  :model="formInline" class="demo-form-inline">
+          <el-form-item label="">
+            <el-input type="text" v-model="formInline.username" placeholder="账号" ></el-input>
+          </el-form-item>
+          <el-form-item label="">
+            <el-input type="password" v-model="formInline.password" placeholder="密码"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button  type="primary" @click="login">登录</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
-import { ElForm } from "element-plus";
-
-interface RuleForm {
-  username: string;
-  password: string;
-}
-
-export default defineComponent({
-  name: "LoginForm",
-  setup() {
-    // 表单数据
-    const ruleForm = reactive<RuleForm>({
-      username: "",
-      password: ""
-    });
-
-    // 表单验证规则
-    const rules = {
-      username: [
-        { required: true, message: "请输入用户名", trigger: "blur" }
-      ],
-      password: [
-        { required: true, message: "请输入密码", trigger: "blur" }
-      ]
-    };
-
-    // 表单引用
-    const ruleFormRef = ref<InstanceType<typeof ElForm>>();
-
-    // 提交表单方法
-    const submitForm = () => {
-      ruleFormRef.value?.validate((valid) => {
-        if (valid) {
-          // 发送登录请求
-          console.log("登录成功", ruleForm);
-          // 这里可以执行登录逻辑，例如发送 API 请求
-        } else {
-          console.log("表单验证失败");
-          return false;
+<script>
+  export default {
+    data() {
+      return {
+        formInline: {
+          username: '',
+          password: ''
         }
-      });
-    };
+      }
+    },
+    methods: {
+      login(){
+        //make sure username OR password are not empty
+        if(this.input.username != "" || this.input.password != ""){
+          console.log("authenticated")
+        }else{
+          console.log("Username and Password can not be empty")
+        }
+      }
 
-    return {
-      ruleForm,
-      rules,
-      ruleFormRef,
-      submitForm
-    };
+    }
   }
-});
 </script>
 
 <style scoped>
 .base-container {
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
 }
 
 .query-box {
-  background-color: white;
+  background-color: rgb(224 242 254);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -109,17 +76,14 @@ export default defineComponent({
   margin-left: 10px;
 }
 
-.demo-ruleForm {
+.demo-form-inline {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
-.el-form-item {
-  margin-bottom: 15px;
+.form-container{
 }
 
-.el-button {
-  width: 100%;
-}
+
+
 </style>
