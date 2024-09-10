@@ -58,13 +58,13 @@
 import { ref } from 'vue';
 import { defineComponent } from 'vue';
 // Define formatters
-const formatSource = (row, column, cellValue, index) => {
-  return sourceMap[cellValue] || cellValue;
-};
-
-const formatStatus = (row, column, cellValue, index) => {
-  return statusMap[cellValue] || cellValue;
-};
+// const formatSource = (row, column, cellValue, index) => {
+//   return sourceMap[cellValue] || cellValue;
+// };
+//
+// const formatStatus = (row, column, cellValue, index) => {
+//   return statusMap[cellValue] || cellValue;
+// };
 
 interface LogEntry {
   businessAccount: string;
@@ -79,7 +79,9 @@ interface LogEntry {
   callTime: string;
   time: string;
 }
-
+onMounted(()=>{
+  console.log(props.data)
+})
 const props = defineProps<{
   data: LogEntry[];
 }>();
