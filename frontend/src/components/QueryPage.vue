@@ -75,8 +75,14 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary"  :loading="loading"
-      :loading-icon="Eleme" @click="fetchLogs">查询</el-button>
+            <el-button
+                type="primary"
+                :loading="loading"
+                :loading-icon="Eleme"
+                :plain="true"
+                @click="fetchLogs">
+
+              查询</el-button>
             <el-button @click="resetForm(formRef)">重置</el-button>
           </el-form-item>
         </el-form>
@@ -104,7 +110,7 @@
 <script lang="ts" setup>
 import axios from 'axios'
 import { reactive, ref } from 'vue'
-import type { FormInstance } from 'element-plus'
+import type { FormInstance ,ElMessage} from 'element-plus'
 import DataTable from '@/components/Table.vue'
 import {Eleme} from "@element-plus/icons-vue";
 
@@ -136,7 +142,6 @@ const pagination = reactive({
   pageSize: 10,
   totalCount: 0
 })
-
 // Data and error state
 const logEntries = ref([])
 const errorMessage = ref<string | null>(null)
@@ -161,13 +166,17 @@ const fetchLogs = async () => {
       }
     })
 
-    const { code, message, data } = response.data
+    const { code, message, data,duration } = response.data
 
     if (code === 200 && data) {
       logEntries.value = data.todos
       pagination.currentPage = data.currentPage
       pagination.totalCount = data.totalCount
       errorMessage.value = null
+      ElMessage({
+        message: '查询成功, 耗时:'+duration,
+        type: 'success',
+      })
     } else {
       errorMessage.value = message || '请求日志数据失败'
     }
