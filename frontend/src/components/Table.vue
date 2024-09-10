@@ -107,8 +107,6 @@ const tableRowClassName = ({
 }: {
   row: LogEntry
 }) => {
-  console.log(row.status)
-  console.log(row)
   if (row.status === 1) {
     return ''
   } else if (row.status === 2) {
