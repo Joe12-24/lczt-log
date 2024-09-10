@@ -3,6 +3,8 @@
     <div class="login-box">
       <div class="title-container">
         <el-icon><i class="el-icon-document"></i></el-icon>
+           <img src="../assets/img.png" class="mr-3 w-10 h-10" alt="Favicon">
+
         <h1>后台日志查询</h1>
       </div>
       <el-form :model="formInline" class="login-form" label-position="top">
@@ -10,7 +12,7 @@
           <el-input
             v-model="formInline.username"
             placeholder="请输入账号"
-            prefix-icon="el-icon-user"
+            prefix-icon="Avatar"
           />
         </el-form-item>
         <el-form-item label="密码">
@@ -18,8 +20,9 @@
             v-model="formInline.password"
             type="password"
             placeholder="请输入密码"
-            prefix-icon="el-icon-lock"
+            prefix-icon="Lock"
           />
+
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="login">登录</el-button>
@@ -82,7 +85,8 @@ const login = async () => {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  //background-color: #f5f5f5;
+   background-color: rgba(224, 242, 254, 1);
 }
 
 .login-box {
@@ -95,6 +99,7 @@ const login = async () => {
 }
 
 .title-container {
+
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -108,7 +113,7 @@ const login = async () => {
 
 .title-container h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 45px;
   font-weight: 600;
   color: #333;
 }
