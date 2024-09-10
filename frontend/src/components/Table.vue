@@ -72,29 +72,29 @@ interface LogEntry {
   parameter: string;
   result: string;
   source: string;
-  status: number;
+  status: string;
 }
 
 const props = defineProps<{
   data: LogEntry[];
 }>();
 
-const sourceMap = {
+const sourceMap :{ [key: string]: string }= {
   'newMall': '凌志接口',
   'newMallTsdk': '综合理财',
   'xiaodai': '小贷'
 };
 
-const statusMap = {
-  1: '正常',
-  2: '异常'
+const statusMap: any = {
+  '1': '正常',
+  '2': '异常'
 };
 
 const formatSource = (source: string) => {
   return sourceMap[source] || '未知';
 };
 
-const formatStatus = (status: number) => {
+const formatStatus = (status: string) => {
   return statusMap[status] || '未知';
 };
 
@@ -107,9 +107,9 @@ const tableRowClassName = ({
 }: {
   row: LogEntry
 }) => {
-  if (row.status === 1) {
+  if (row.status === '1') {
     return ''
-  } else if (row.status === 2) {
+  } else if (row.status === '2') {
     return 'warning-row'
   }
   return 'warning-row'

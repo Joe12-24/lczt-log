@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import QueryPage from '@/components/QueryPage.vue';
-import Login from '@/components/Login.vue';
+import QueryPage from '../components/QueryPage.vue';
+import Login from '../components/Login.vue';
 
 // 定义路由配置
 const routes: Array<RouteRecordRaw> = [

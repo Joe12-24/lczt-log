@@ -110,9 +110,13 @@
 <script lang="ts" setup>
 import axios from 'axios'
 import { reactive, ref } from 'vue'
-import type { FormInstance ,ElMessage} from 'element-plus'
-import DataTable from '@/components/Table.vue'
+import type { FormInstance} from 'element-plus'
+import { ElMessage } from 'element-plus';
+
+import DataTable from '../components/Table.vue'
 import {Eleme} from "@element-plus/icons-vue";
+import { ElLoading } from 'element-plus';
+import { Loading } from '@element-plus/icons-vue';
 
 // Form reference and data
 const formRef = ref<FormInstance>()
@@ -131,7 +135,7 @@ const formInline = reactive({
   result: '',
   status: '',
   source: '',
-  dateRange: [] as [Date, Date],
+  dateRange: [] as Date[],
   pageNum: 1,      // Default page number
   pageSize: 10,    // Default page size
 })
@@ -146,7 +150,7 @@ const pagination = reactive({
 const logEntries = ref([])
 const errorMessage = ref<string | null>(null)
 // 控制加载状态
-const loading = ref(false);
+const loading = ref<boolean>(false);
 // Fetch logs from backend
 const fetchLogs = async () => {
     loading.value = true;  // 开始加载
