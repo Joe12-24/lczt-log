@@ -9,9 +9,9 @@
     <el-table-column prop="date" label="客户代码" width="120" fixed="left" />
     <el-table-column prop="name" label="资金账号" width="120" fixed="left" />
     <el-table-column prop="address" label="一户通账号" width="120"/>
-    <el-table-column prop="functionId" label="功能号" width="120"/>
+    <el-table-column prop="functionId" label="功能号" width="100"/>
     <el-table-column prop="serialNo" label="流水号" width="300"/>
-    <el-table-column prop="callTime" label="响应时间" width="120"/>
+    <el-table-column prop="callTime" label="响应时间" width="80"/>
     <el-table-column prop="time" label="日期" width="250"/>
     <el-table-column prop="parameter" label="入参" width="120">
       <template #default="{ row }">

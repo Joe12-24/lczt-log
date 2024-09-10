@@ -193,11 +193,11 @@ const handleCurrentChange = (newPage: number) => {
 
 <style scoped>
 .demo-form-inline .el-input {
-  --el-input-width: 140px;
+  --el-input-width: 200px;
 }
 
 .demo-form-inline .el-select {
-  --el-select-width: 140px;
+  --el-select-width: 200px;
 }
 .demo-form-inline {
   text-align: left;
@@ -209,7 +209,7 @@ const handleCurrentChange = (newPage: number) => {
   /* width: 150px; */
 }
 .query-page {
-  width: 1200px;
+  width: 1400px;
   margin: auto;
   flex-direction: column;
   padding: 20px;

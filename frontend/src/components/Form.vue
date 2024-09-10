@@ -139,11 +139,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style>
 .demo-form-inline .el-input {
-  --el-input-width: 130px;
+  --el-input-width: 200px;
 }
 
 .demo-form-inline .el-select {
-  --el-select-width: 130px;
+  --el-select-width: 200px;
 }
 .demo-form-inline{
   text-align: left;
