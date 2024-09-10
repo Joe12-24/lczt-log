@@ -6,9 +6,9 @@ export const SOURCE_DICT = new Map<string, string>([
   ['xiaodai', '小贷']
 ]);
 
-export const STATUS_DICT = new Map<string, string>([
-  ['1', '正常'],
-  ['2', '异常']
+export const STATUS_DICT = new Map<number, string>([
+  [1, '正常'],
+  [2, '异常']
 ]);
 
 // 工具函数：根据字典值获取对应的标签

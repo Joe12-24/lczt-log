@@ -61,41 +61,22 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-interface LogEntry {
-  date: string;
-  name: string;
-  address: string;
-  functionId: string;
-  serialNo: string;
-  callTime: string;
-  time: string;
-  parameter: string;
-  result: string;
-  source: string;
-  status: number;
-}
+import {STATUS_DICT,SOURCE_DICT} from "@/models/dictionary.ts";
+import {LogEntry} from "@/models/interface.ts";
+
 
 const props = defineProps<{
   data: LogEntry[];
 }>();
 
-const sourceMap :{ [key: string]: string }= {
-  'newMall': '凌志接口',
-  'newMallTsdk': '综合理财',
-  'xiaodai': '小贷'
+
+
+const formatSource = (source: string): string => {
+  return SOURCE_DICT.get(source) || '未知';
 };
 
-const statusMap: { [key: string]: string } = {
-  1: '正常',
-  2: '异常'
-};
-
-const formatSource = (source: string) => {
-  return sourceMap[source] || '未知';
-};
-
-const formatStatus = (status: number) => {
-  return statusMap[status] || '未知';
+const formatStatus = (status: number): string => {
+  return STATUS_DICT.get(status) || '未知';
 };
 
 const dialogVisible = ref(false);
