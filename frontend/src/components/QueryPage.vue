@@ -75,7 +75,8 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="fetchLogs">查询</el-button>
+            <el-button type="primary"  :loading="loading"
+      :loading-icon="Eleme" @click="fetchLogs">查询</el-button>
             <el-button @click="resetForm(formRef)">重置</el-button>
           </el-form-item>
         </el-form>
@@ -105,6 +106,7 @@ import axios from 'axios'
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import DataTable from '@/components/Table.vue'
+import {Eleme} from "@element-plus/icons-vue";
 
 // Form reference and data
 const formRef = ref<FormInstance>()
@@ -138,9 +140,11 @@ const pagination = reactive({
 // Data and error state
 const logEntries = ref([])
 const errorMessage = ref<string | null>(null)
-
+// 控制加载状态
+const loading = ref(false);
 // Fetch logs from backend
 const fetchLogs = async () => {
+    loading.value = true;  // 开始加载
   try {
     const queryParams = {
       ...formInline,
@@ -170,9 +174,12 @@ const fetchLogs = async () => {
   } catch (error) {
     console.error('请求日志数据失败:', error)
     errorMessage.value = '请求日志数据失败，请稍后重试'
+  }finally {
+    loading.value = false;  // 结束加载
   }
 }
-
+// 图标
+const loadingIcon = ref(ElLoading);
 // Reset form fields
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
