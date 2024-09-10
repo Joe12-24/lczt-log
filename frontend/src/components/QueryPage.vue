@@ -88,7 +88,7 @@
       <div class="pagination-container">
         <el-pagination
           background
-          layout="prev, pager, next"
+          layout="total,prev, pager, next"
           :total="pagination.totalCount"
           :page-size="pagination.pageSize"
           :current-page="pagination.currentPage"
