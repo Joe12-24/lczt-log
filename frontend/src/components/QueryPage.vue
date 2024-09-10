@@ -1,4 +1,5 @@
 <template>
+
   <div class="page-container">
     <div class="nav-container">
       <!-- Navigation menu code, if needed -->
@@ -66,8 +67,8 @@
             <el-date-picker
               v-model="formInline.dateRange"
               type="datetimerange"
-              start-placeholder="Start Date"
-              end-placeholder="End Date"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
               :default-time="defaultTime2"
               style="width: 290px"
             />
@@ -108,8 +109,8 @@ import DataTable from '@/components/Table.vue'
 // Form reference and data
 const formRef = ref<FormInstance>()
 const defaultTime2: [Date, Date] = [
-  new Date(2000, 1, 1, 12, 0, 0),
-  new Date(2000, 2, 1, 8, 0, 0),
+  new Date(2000, 1, 1, 0, 0, 0),
+  new Date(2000, 2, 1, 0, 0, 0),
 ]
 const formInline = reactive({
   clientId: '',

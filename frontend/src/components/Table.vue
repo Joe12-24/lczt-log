@@ -3,11 +3,10 @@
     :data="data"
     style="width: 100%"
     :row-class-name="tableRowClassName"
-    border
     class="custom-table"
   >
     <el-table-column prop="date" label="客户代码" width="120" fixed="left" />
-    <el-table-column prop="name" label="资金账号" width="120" fixed="left" />
+    <el-table-column prop="name" label="资金账号" width="120" />
     <el-table-column prop="address" label="一户通账号" width="120"/>
     <el-table-column prop="functionId" label="功能号" width="100"/>
     <el-table-column prop="serialNo" label="流水号" width="300"/>
@@ -15,28 +14,30 @@
     <el-table-column prop="time" label="日期" width="250"/>
     <el-table-column prop="parameter" label="入参" width="120">
       <template #default="{ row }">
-        <el-button @click="showDetail('入参', row.parameter)">查询</el-button>
+        <el-popover placement="right" width="300" trigger="click">
+          <template #reference>
+            <el-button>查看</el-button>
+          </template>
+          <div>{{ row.parameter }}</div>
+        </el-popover>
       </template>
     </el-table-column>
     <el-table-column prop="result" label="返回结果" width="120">
       <template #default="{ row }">
-        <el-button @click="showDetail('返回结果', row.result)">查询</el-button>
+        <el-popover placement="right" width="300" trigger="click">
+          <template #reference>
+            <el-button>查看</el-button>
+          </template>
+          <div>{{ row.result }}</div>
+        </el-popover>
       </template>
     </el-table-column>
-    <el-table-column
-      prop="source"
-      label="来源"
-      width="120"
-    >
+    <el-table-column prop="source" label="来源" width="120">
       <template #default="{ row }">
         {{ formatSource(row.source) }}
       </template>
     </el-table-column>
-    <el-table-column
-      prop="status"
-      label="区分"
-      width="120"
-    >
+    <el-table-column prop="status" label="区分" width="120">
       <template #default="{ row }">
         {{ formatStatus(row.status) }}
       </template>
@@ -56,8 +57,9 @@
     </span>
   </el-dialog>
 </template>
+
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 
 interface LogEntry {
   date: string;
@@ -115,6 +117,7 @@ const tableRowClassName = ({ row }: { row: LogEntry }) => {
   return ''; // Default class for other statuses
 };
 </script>
+
 <style scoped>
 .el-table .warning-row {
   background-color: #ffcccc; /* Example color for warning status */
