@@ -15,12 +15,12 @@
     <el-table-column prop="time" label="日期" width="250"/>
     <el-table-column prop="parameter" label="入参" width="120">
       <template #default="{ row }">
-        <el-button @click="showDetail('parameter', row.parameter)">查询</el-button>
+        <el-button @click="showDetail('入参', row.parameter)">查询</el-button>
       </template>
     </el-table-column>
     <el-table-column prop="result" label="返回结果" width="120">
       <template #default="{ row }">
-        <el-button @click="showDetail('result', row.result)">查询</el-button>
+        <el-button @click="showDetail('返回结果', row.result)">查询</el-button>
       </template>
     </el-table-column>
     <el-table-column
@@ -56,7 +56,6 @@
     </span>
   </el-dialog>
 </template>
-
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue';
 
@@ -107,43 +106,33 @@ const showDetail = (title: string, content: string) => {
   dialogVisible.value = true;
 };
 
-// const tableRowClassName = ({ row, rowIndex }: { row: LogEntry; rowIndex: number }) => {
-//   return rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-// };
-const tableRowClassName = ({ row }: { row: User }) => {
-  // Define class names based on the status value
+const tableRowClassName = ({ row }: { row: LogEntry }) => {
   if (row.status === 1) {
     return 'warning-row'; // Apply this class for status 1
   } else if (row.status === 2) {
     return 'success-row'; // Apply this class for status 2
   }
-  return ''; // Default class for other status values
+  return ''; // Default class for other statuses
 };
-
-
 </script>
-
 <style scoped>
 .el-table .warning-row {
-  --el-table-tr-bg-color: var(--el-color-warning-light-9);
+  background-color: #ffcccc; /* Example color for warning status */
 }
+
 .el-table .success-row {
-  --el-table-tr-bg-color: var(--el-color-success-light-9);
+  background-color: #ccffcc; /* Example color for success status */
 }
+
 .custom-table {
-  font-size: 12px; /* 更小的字体 */
-  --el-table-header-font-size: 12px; /* 更小的表头字体 */
-  --el-table-cell-font-size: 12px; /* 更小的单元格字体 */
+  font-size: 12px; /* Smaller font size */
+  --el-table-header-font-size: 12px; /* Smaller header font size */
+  --el-table-cell-font-size: 12px; /* Smaller cell font size */
 }
-
-
 
 .el-table .el-table__body .el-table__cell {
-  white-space: nowrap; /* 确保单元格内容不换行 */
-  overflow: hidden; /* 隐藏溢出的内容 */
-  text-overflow: ellipsis; /* 溢出时显示省略号 */
+  white-space: nowrap; /* Prevent cell content from wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show ellipsis for overflow */
 }
-
-
-
 </style>
