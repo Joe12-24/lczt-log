@@ -108,23 +108,26 @@ const showDetail = (title: string, content: string) => {
   dialogVisible.value = true;
 };
 
-const tableRowClassName = ({ row }: { row: LogEntry }) => {
+const tableRowClassName = ({
+  row,
+}: {
+  row: LogEntry
+}) => {
   if (row.status === 1) {
-    return 'warning-row'; // Apply this class for status 1
+    return ''
   } else if (row.status === 2) {
-    return 'success-row'; // Apply this class for status 2
+    return 'warning-row'
   }
-  return ''; // Default class for other statuses
-};
+  return 'warning-row'
+}
 </script>
 
 <style scoped>
 .el-table .warning-row {
-  background-color: #ffcccc; /* Example color for warning status */
+  --el-table-tr-bg-color: var(--el-color-warning-light-9);
 }
-
 .el-table .success-row {
-  background-color: #ccffcc; /* Example color for success status */
+  --el-table-tr-bg-color: var(--el-color-success-light-9);
 }
 
 .custom-table {
