@@ -72,7 +72,7 @@ interface LogEntry {
   parameter: string;
   result: string;
   source: string;
-  status: string;
+  status: number;
 }
 
 const props = defineProps<{
@@ -85,16 +85,16 @@ const sourceMap :{ [key: string]: string }= {
   'xiaodai': '小贷'
 };
 
-const statusMap: any = {
-  '1': '正常',
-  '2': '异常'
+const statusMap: { [key: string]: string } = {
+  1: '正常',
+  2: '异常'
 };
 
 const formatSource = (source: string) => {
   return sourceMap[source] || '未知';
 };
 
-const formatStatus = (status: string) => {
+const formatStatus = (status: number) => {
   return statusMap[status] || '未知';
 };
 
@@ -107,21 +107,23 @@ const tableRowClassName = ({
 }: {
   row: LogEntry
 }) => {
-  if (row.status === '1') {
+  console.log(row.status)
+  console.log(row)
+  if (row.status === 1) {
     return ''
-  } else if (row.status === '2') {
+  } else if (row.status === 2) {
     return 'warning-row'
   }
   return 'warning-row'
 }
 </script>
 
-<style scoped>
-.el-table .warning-row {
+<style scoped >
+/deep/ .warning-row {
   --el-table-tr-bg-color: var(--el-color-warning-light-9);
 }
-.el-table .success-row {
-  --el-table-tr-bg-color: var(--el-color-success-light-9);
+/deep/ .success-row {
+  --el-table-tr-bg-color: var(--el-color-success-light-9) ;
 }
 
 .custom-table {
