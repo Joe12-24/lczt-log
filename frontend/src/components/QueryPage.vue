@@ -330,7 +330,7 @@ const handleCurrentChange = (newPage: number) => {
   //width: 150px;
 }
 .query-page {
-  width: calc(100% - 150px);
+  width: 1200px;
   margin: auto;
   //display: flex;
   flex-direction: column;

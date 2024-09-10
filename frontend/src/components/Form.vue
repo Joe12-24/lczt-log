@@ -72,7 +72,7 @@
         start-placeholder="Start Date"
         end-placeholder="End Date"
         :default-time="defaultTime2"
-        style="width: 290px"
+        style="width: 350px"
       />
     </el-form-item>
 
@@ -139,11 +139,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style>
 .demo-form-inline .el-input {
-  --el-input-width: 140px;
+  --el-input-width: 130px;
 }
 
 .demo-form-inline .el-select {
-  --el-select-width: 140px;
+  --el-select-width: 130px;
 }
 .demo-form-inline{
   text-align: left;
