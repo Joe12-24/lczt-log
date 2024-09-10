@@ -23,21 +23,24 @@
         <el-button @click="showDetail('result', row.result)">查询</el-button>
       </template>
     </el-table-column>
-   <el-table-column
-  prop="source"
-  label="来源"
-  width="120"
-  :formatter="formatSource"
-></el-table-column>
-
-<el-table-column
-  prop="status"
-  label="区分"
-  width="120"
-  :formatter="formatStatus"
-></el-table-column>
-
-
+    <el-table-column
+      prop="source"
+      label="来源"
+      width="120"
+    >
+      <template #default="{ row }">
+        {{ formatSource(row.source) }}
+      </template>
+    </el-table-column>
+    <el-table-column
+      prop="status"
+      label="区分"
+      width="120"
+    >
+      <template #default="{ row }">
+        {{ formatStatus(row.status) }}
+      </template>
+    </el-table-column>
   </el-table>
 
   <!-- 对话框 -->
@@ -55,36 +58,44 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { defineComponent } from 'vue';
-// Define formatters
-// const formatSource = (row, column, cellValue, index) => {
-//   return sourceMap[cellValue] || cellValue;
-// };
-//
-// const formatStatus = (row, column, cellValue, index) => {
-//   return statusMap[cellValue] || cellValue;
-// };
+import { ref, defineProps } from 'vue';
 
 interface LogEntry {
-  businessAccount: string;
-  serialNo: string;
-  clientId: string;
+  date: string;
+  name: string;
+  address: string;
   functionId: string;
-  status: number;
-  cifAccount: string;
+  serialNo: string;
+  callTime: string;
+  time: string;
   parameter: string;
   result: string;
   source: string;
-  callTime: string;
-  time: string;
+  status: number;
 }
-onMounted(()=>{
-  console.log(props.data)
-})
+
 const props = defineProps<{
   data: LogEntry[];
 }>();
+
+const sourceMap = {
+  newMall: '凌志接口',
+  newMallTsdk: '综合理财',
+  xiaodai: '小贷'
+};
+
+const statusMap = {
+  1: '正常',
+  2: '异常'
+};
+
+const formatSource = (source: string) => {
+  return sourceMap[source] || '未知';
+};
+
+const formatStatus = (status: number) => {
+  return statusMap[status] || '未知';
+};
 
 const dialogVisible = ref(false);
 const detailTitle = ref('');
@@ -96,27 +107,36 @@ const showDetail = (title: string, content: string) => {
   dialogVisible.value = true;
 };
 
-const tableRowClassName = ({ row, rowIndex }: { row: LogEntry, rowIndex: number }) => {
-  if (rowIndex % 2 === 0) {
-    return 'even-row';
-  } else {
-    return 'odd-row';
+// const tableRowClassName = ({ row, rowIndex }: { row: LogEntry; rowIndex: number }) => {
+//   return rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
+// };
+const tableRowClassName = ({ row }: { row: User }) => {
+  // Define class names based on the status value
+  if (row.status === 1) {
+    return 'warning-row'; // Apply this class for status 1
+  } else if (row.status === 2) {
+    return 'success-row'; // Apply this class for status 2
   }
+  return ''; // Default class for other status values
 };
 
 
 </script>
 
 <style scoped>
+.el-table .warning-row {
+  --el-table-tr-bg-color: var(--el-color-warning-light-9);
+}
+.el-table .success-row {
+  --el-table-tr-bg-color: var(--el-color-success-light-9);
+}
 .custom-table {
   font-size: 12px; /* 更小的字体 */
   --el-table-header-font-size: 12px; /* 更小的表头字体 */
   --el-table-cell-font-size: 12px; /* 更小的单元格字体 */
 }
 
-.el-table {
-  white-space: nowrap; /* 确保表格内容不换行 */
-}
+
 
 .el-table .el-table__body .el-table__cell {
   white-space: nowrap; /* 确保单元格内容不换行 */
@@ -124,22 +144,6 @@ const tableRowClassName = ({ row, rowIndex }: { row: LogEntry, rowIndex: number 
   text-overflow: ellipsis; /* 溢出时显示省略号 */
 }
 
-.el-table__body-wrapper {
-  overflow-x: auto; /* 添加水平滚动条 */
-}
 
-.el-table__header-wrapper {
-  overflow: hidden; /* 确保表头不显示滚动条 */
-}
 
-.el-table .el-table__fixed {
-  background: #fff; /* 固定列背景颜色 */
-}
-
-.even-row {
-  --el-table-tr-bg-color: #f5f5f5;
-}
-.odd-row {
-  --el-table-tr-bg-color: #ffffff;
-}
 </style>
