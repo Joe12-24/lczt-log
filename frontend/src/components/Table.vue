@@ -80,9 +80,9 @@ const props = defineProps<{
 }>();
 
 const sourceMap = {
-  newMall: '凌志接口',
-  newMallTsdk: '综合理财',
-  xiaodai: '小贷'
+  'newMall': '凌志接口',
+  'newMallTsdk': '综合理财',
+  'xiaodai': '小贷'
 };
 
 const statusMap = {
@@ -101,12 +101,6 @@ const formatStatus = (status: number) => {
 const dialogVisible = ref(false);
 const detailTitle = ref('');
 const detailContent = ref('');
-
-const showDetail = (title: string, content: string) => {
-  detailTitle.value = title;
-  detailContent.value = content;
-  dialogVisible.value = true;
-};
 
 const tableRowClassName = ({
   row,
