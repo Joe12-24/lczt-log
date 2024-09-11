@@ -21,7 +21,6 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Form: typeof import('./src/components/Form.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
     QueryPage: typeof import('./src/components/QueryPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

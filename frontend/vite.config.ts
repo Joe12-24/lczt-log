@@ -27,26 +27,23 @@ export default defineConfig({
       autoInstall: true,
     }),
   ],
-  base: './',
+  base: './', // 确保构建后的资源路径正确
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      'assets': path.resolve(__dirname, 'src/assets'),
+      'components': path.resolve(__dirname, 'src/components'),
+      'models': path.resolve(__dirname, 'src/models'),
+      'router': path.resolve(__dirname, 'src/router'),
     },
   },
   build: {
-    rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'),
-      output: {
-        format: 'es',
-        entryFileNames: 'assets/[name].js', // 设置入口文件的名称
-        chunkFileNames: 'assets/[name].js', // 设置分块文件的名称
-        assetFileNames: 'assets/[name].[ext]', // 设置资源文件的名称
-        manualChunks: undefined, // 禁用手动拆分
+    terserOptions: {
+      compress: {
+        //生产环境时移除console
+        drop_console: true,
+        drop_debugger: true,
       },
-    },
-    // 其他构建选项
-    commonjsOptions: {
-      include: /node_modules/, // 处理 CommonJS 模块
     },
   },
 });
