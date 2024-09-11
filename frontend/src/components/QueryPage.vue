@@ -112,7 +112,7 @@ import axios from 'axios'
 import { reactive, ref } from 'vue'
 import type { FormInstance} from 'element-plus'
 import { ElMessage } from 'element-plus';
-
+import http from '@/http'; // 确保路径正确
 import DataTable from '../components/Table.vue'
 import {Eleme} from "@element-plus/icons-vue";
 import { ElLoading } from 'element-plus';
@@ -163,12 +163,14 @@ const fetchLogs = async () => {
       pageSize: pagination.pageSize,
     }
 
-    const response = await axios.post('http://localhost:8080/logs', queryParams, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-      }
-    })
+    // const response = await axios.post('http://localhost:8080/logs', queryParams, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+    //   }
+    // })
+    const response = await http.post('/logs', queryParams);
+
 
     const { code, message, data,duration } = response.data
 

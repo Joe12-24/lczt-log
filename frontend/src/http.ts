@@ -3,8 +3,8 @@ import axios from 'axios';
 
 // 创建 Axios 实例
 const instance = axios.create({
-  baseURL: 'http://localhost:8080', // 根据实际情况修改
-  timeout: 120, // 设置请求超时时间
+  baseURL: 'http://10.168.103.6:8001/lczt-log-back/', // 根据实际情况修改
+  timeout: 10000, // 设置请求超时时间
 });
 
 // 添加请求拦截器
