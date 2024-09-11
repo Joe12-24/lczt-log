@@ -12,13 +12,13 @@
     <el-table-column prop="serialNo" label="流水号" width="300"/>
     <el-table-column prop="callTime" label="响应时间" width="80"/>
     <el-table-column prop="time" label="日期" width="250"/>
-    <el-table-column prop="parameter" label="入参" width="120">
+    <el-table-column prop="req" label="入参" width="120">
       <template #default="{ row }">
         <el-popover placement="right" width="300" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
-          <div>{{ row.parameter }}</div>
+          <div>{{ row.req }}</div>
         </el-popover>
       </template>
     </el-table-column>
@@ -62,12 +62,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import {STATUS_DICT,SOURCE_DICT} from "../models/dictionary";
-import {LogEntry} from "../models/interface";
+import {STATE_DICT,SOURCE_DICT} from "../models/dictionary";
+import {LcztLogEntry} from "../models/interface";
 
 
 const props = defineProps<{
-  data: LogEntry[];
+  data: LcztLogEntry[];
 }>();
 
 
@@ -76,8 +76,8 @@ const formatSource = (source: string): string => {
   return SOURCE_DICT.get(source) || '未知';
 };
 
-const formatStatus = (status: number): string => {
-  return STATUS_DICT.get(status) || '未知';
+const formatStatus = (status: boolean): string => {
+  return STATE_DICT.get(status) || '未知';
 };
 
 const dialogVisible = ref(false);
@@ -87,11 +87,11 @@ const detailContent = ref('');
 const tableRowClassName = ({
   row,
 }: {
-  row: LogEntry
+  row: LcztLogEntry
 }) => {
-  if (row.status === 1) {
+  if (row.status) {
     return ''
-  } else if (row.status === 2) {
+  } else if (row.status) {
     return 'warning-row'
   }
   return 'warning-row'
