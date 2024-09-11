@@ -32,16 +32,17 @@
         </el-popover>
       </template>
     </el-table-column>
+        <el-table-column prop="status" label="区分" width="120">
+      <template #default="{ row }">
+        {{ formatStatus(row.status) }}
+      </template>
+    </el-table-column>
     <el-table-column prop="source" label="来源" width="120">
       <template #default="{ row }">
         {{ formatSource(row.source) }}
       </template>
     </el-table-column>
-    <el-table-column prop="status" label="区分" width="120">
-      <template #default="{ row }">
-        {{ formatStatus(row.status) }}
-      </template>
-    </el-table-column>
+
   </el-table>
 
   <!-- 对话框 -->
