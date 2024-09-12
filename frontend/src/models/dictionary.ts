@@ -10,7 +10,7 @@ export const STATUS_DICT = new Map<number, string>([
   [1, '正常'],
   [2, '异常']
 ]);
-export const STATE_DICT = new Map<number, string>([
+export const STATE_DICT = new Map<boolean, string>([
   [true, '正常'],
   [false, '异常']
 ]);

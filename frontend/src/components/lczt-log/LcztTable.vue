@@ -14,7 +14,7 @@
     <el-table-column prop="time" label="日期" width="250"/>
     <el-table-column prop="req" label="入参" width="120">
       <template #default="{ row }">
-        <el-popover placement="right" width="300" trigger="click">
+        <el-popover placement="right" width="70" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
@@ -22,9 +22,9 @@
         </el-popover>
       </template>
     </el-table-column>
-    <el-table-column prop="result" label="返回结果" width="120">
+    <el-table-column prop="response" label="返回结果" width="120">
       <template #default="{ row }">
-        <el-popover placement="right" width="300" trigger="click">
+        <el-popover placement="right" width="70" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
@@ -32,9 +32,9 @@
         </el-popover>
       </template>
     </el-table-column>
-        <el-table-column prop="status" label="区分" width="120">
+        <el-table-column prop="state" label="区分" width="120">
       <template #default="{ row }">
-        {{ formatStatus(row.status) }}
+        {{ formatStatus(row.state) }}
       </template>
     </el-table-column>
     <el-table-column prop="source" label="来源" width="120">
@@ -76,8 +76,8 @@ const formatSource = (source: string): string => {
   return SOURCE_DICT.get(source) || '未知';
 };
 
-const formatStatus = (status: boolean): string => {
-  return STATE_DICT.get(status) || '未知';
+const formatStatus = (state: boolean): string => {
+  return STATE_DICT.get(state) || '未知';
 };
 
 const dialogVisible = ref(false);
