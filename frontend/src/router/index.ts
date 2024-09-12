@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
     next({ name: 'Login' });
   } else if (!to.meta.requiresAuth && isAuthenticated) {
     // 如果目标路由不需要认证但用户已认证，则重定向到查询页面
-    next({ name: 'lczt-query' });
+    next({ name: 'LcztQueryPage' });
   } else {
     next();
   }
