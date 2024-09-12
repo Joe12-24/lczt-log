@@ -169,7 +169,7 @@ const fetchLogs = async () => {
     //     'Authorization': `Bearer ${localStorage.getItem('authToken')}`
     //   }
     // })
-    const response = await http.post('/logs', queryParams);
+    const response = await http.post('/queryLogs', queryParams);
 
 
     const { code, message, data,duration } = response.data

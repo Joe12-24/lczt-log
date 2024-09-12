@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import QueryPage from '../components/interface-mall/QueryPage.vue';
+import LcztQueryPage from '../components/lczt-log/LcztQueryPage.vue';
 import Login from '../components/Login.vue';
 
 // 定义路由配置
@@ -14,6 +15,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/query',
     name: 'QueryPage',
     component: QueryPage,
+    meta: { requiresAuth: true } // 查询页面需要认证
+  },
+  {
+    path: '/lczt-query',
+    name: 'LcztQueryPage',
+    component: LcztQueryPage,
     meta: { requiresAuth: true } // 查询页面需要认证
   }
 ];
@@ -37,7 +44,7 @@ router.beforeEach((to, from, next) => {
     next({ name: 'Login' });
   } else if (!to.meta.requiresAuth && isAuthenticated) {
     // 如果目标路由不需要认证但用户已认证，则重定向到查询页面
-    next({ name: 'QueryPage' });
+    next({ name: 'lczt-query' });
   } else {
     next();
   }

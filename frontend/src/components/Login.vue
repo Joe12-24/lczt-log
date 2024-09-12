@@ -65,7 +65,7 @@ const login = async () => {
 
       if (code === 200 && data) {
         localStorage.setItem('authToken', data); // 存储 token
-        await router.push('/query'); // 使用 router 进行页面跳转
+        await router.push('/lczt-query'); // 使用 router 进行页面跳转
       } else {
         errorMessage.value = message || 'Login failed'; // 显示错误信息
       }
