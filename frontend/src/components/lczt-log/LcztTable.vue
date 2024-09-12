@@ -4,17 +4,23 @@
     style="width: 100%"
     :row-class-name="tableRowClassName"
     class="custom-table"
+    border
   >
     <el-table-column prop="clientId" label="客户代码" width="100" fixed="left" />
     <el-table-column prop="businessAccount" label="资金账号" width="180" />
     <el-table-column prop="cifAccount" label="一户通账号" width="180"/>
-    <el-table-column prop="functionId" label="功能号" width="100"/>
+    <el-table-column prop="functionId" label="功能号" width="120"/>
     <el-table-column prop="serialNo" label="流水号" width="300"/>
+    <el-table-column prop="sessionId" label="sessionId" width="300"/>
     <el-table-column prop="callTime" label="响应时间" width="80"/>
-    <el-table-column prop="time" label="日期" width="250"/>
+    <el-table-column prop="clientIp" label="clientIp" width="120"/>
+    <el-table-column prop="serverIp" label="serverIp" width="120"/>
+    <el-table-column prop="serverId" label="serverId" width="120"/>
+    <el-table-column prop="tradeId" label="tradeId" width="120"/>
+    <el-table-column prop="sendDate" label="日期" width="250"/>
     <el-table-column prop="req" label="入参" width="120">
       <template #default="{ row }">
-        <el-popover placement="right" width="70" trigger="click">
+        <el-popover placement="left" width="250" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
@@ -22,17 +28,17 @@
         </el-popover>
       </template>
     </el-table-column>
-    <el-table-column prop="response" label="返回结果" width="120">
+    <el-table-column prop="response" label="返回结果" width="90">
       <template #default="{ row }">
-        <el-popover placement="right" width="70" trigger="click">
+        <el-popover placement="right" width="250" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
-          <div>{{ row.result }}</div>
+          <div>{{ row.response }}</div>
         </el-popover>
       </template>
     </el-table-column>
-        <el-table-column prop="state" label="区分" width="120">
+        <el-table-column prop="state" label="区分" width="80">
       <template #default="{ row }">
         {{ formatStatus(row.state) }}
       </template>
@@ -49,7 +55,7 @@
   <el-dialog
     title="详细信息"
     :visible.sync="dialogVisible"
-    width="50%"
+    width="300px"
     @close="dialogVisible = false"
   >
     <p><strong>{{ detailTitle }}:</strong> {{ detailContent }}</p>
@@ -89,9 +95,9 @@ const tableRowClassName = ({
 }: {
   row: LcztLogEntry
 }) => {
-  if (row.status) {
+  if (row.state) {
     return ''
-  } else if (row.status) {
+  } else if (row.state) {
     return 'warning-row'
   }
   return 'warning-row'
