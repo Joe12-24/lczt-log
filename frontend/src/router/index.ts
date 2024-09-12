@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import QueryPage from '../components/QueryPage.vue';
+import QueryPage from '../components/interface-mall/QueryPage.vue';
 import Login from '../components/Login.vue';
 
 // 定义路由配置

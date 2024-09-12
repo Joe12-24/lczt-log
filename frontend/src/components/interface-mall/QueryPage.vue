@@ -112,8 +112,8 @@ import axios from 'axios'
 import { reactive, ref } from 'vue'
 import type { FormInstance} from 'element-plus'
 import { ElMessage } from 'element-plus';
-import http from '@/http'; // 确保路径正确
-import DataTable from '../components/Table.vue'
+import http from '@/http.ts'; // 确保路径正确
+import DataTable from '@/components/interface-mall/Table.vue'
 import {Eleme} from "@element-plus/icons-vue";
 import { ElLoading } from 'element-plus';
 import { Loading } from '@element-plus/icons-vue';

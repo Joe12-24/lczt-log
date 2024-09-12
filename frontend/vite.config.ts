@@ -40,7 +40,7 @@ export default defineConfig({
   },
   server: {
     port: 3000, // 开发服务器端口
-    open: true, // 启动时自动打开浏览器
+    open: false, // 启动时自动打开浏览器
     proxy: {
       // 配置代理，根据需要调整
       '/api': {

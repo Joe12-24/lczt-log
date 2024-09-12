@@ -22,10 +22,10 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Form: typeof import('./src/components/Form.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
-    QueryPage: typeof import('./src/components/QueryPage.vue')['default']
+    QueryPage: typeof import('./src/components/interface-mall/QueryPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Table: typeof import('./src/components/Table.vue')['default']
+    Table: typeof import('./src/components/interface-mall/Table.vue')['default']
     Test: typeof import('./src/components/test.vue')['default']
   }
 }

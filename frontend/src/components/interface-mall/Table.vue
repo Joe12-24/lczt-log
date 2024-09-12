@@ -62,8 +62,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import {STATUS_DICT,SOURCE_DICT} from "../models/dictionary";
-import {LogEntry} from "../models/interface";
+import {STATUS_DICT,SOURCE_DICT} from "../../models/dictionary.ts";
+import {LogEntry} from "../../models/interface.ts";
 
 
 const props = defineProps<{
