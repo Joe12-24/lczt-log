@@ -5,13 +5,13 @@
     :row-class-name="tableRowClassName"
     class="custom-table"
     border
-  >
-    <el-table-column prop="clientId" label="客户代码" width="100" fixed="left" />
+    scrollbar-always-on>
+    <el-table-column prop="clientId" label="客户代码" width="180" fixed="left" />
     <el-table-column prop="businessAccount" label="资金账号" width="180" />
     <el-table-column prop="cifAccount" label="一户通账号" width="180"/>
-    <el-table-column prop="functionId" label="功能号" width="120"/>
+    <el-table-column prop="functionId" label="功能号" width="100"/>
     <el-table-column prop="serialNo" label="流水号" width="300"/>
-    <el-table-column prop="sessionId" label="sessionId" width="300"/>
+    <el-table-column prop="sessionId" label="sessionId" width="120"/>
     <el-table-column prop="callTime" label="响应时间" width="80"/>
     <el-table-column prop="clientIp" label="clientIp" width="120"/>
     <el-table-column prop="serverIp" label="serverIp" width="120"/>
@@ -20,7 +20,7 @@
     <el-table-column prop="sendDate" label="日期" width="250"/>
     <el-table-column prop="req" label="入参" width="120">
       <template #default="{ row }">
-        <el-popover placement="left" width="250" trigger="click">
+        <el-popover placement="left" width="300" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
@@ -30,7 +30,7 @@
     </el-table-column>
     <el-table-column prop="response" label="返回结果" width="90">
       <template #default="{ row }">
-        <el-popover placement="right" width="250" trigger="click">
+        <el-popover placement="right" width="300" trigger="click">
           <template #reference>
             <el-button>查看</el-button>
           </template>
@@ -68,8 +68,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import {STATE_DICT,SOURCE_DICT} from "@/models/dictionary.ts";
-import {LcztLogEntry} from "@/models/interface.ts";
+import {STATE_DICT,SOURCE_DICT} from "@/models/dictionary";
+import {LcztLogEntry} from "@/models/interface";
 
 
 const props = defineProps<{
@@ -79,7 +79,7 @@ const props = defineProps<{
 
 
 const formatSource = (source: string): string => {
-  return SOURCE_DICT.get(source) || '未知';
+  return SOURCE_DICT.get(source) || source;
 };
 
 const formatStatus = (state: boolean): string => {
@@ -122,5 +122,8 @@ const tableRowClassName = ({
   white-space: nowrap; /* Prevent cell content from wrapping */
   overflow: hidden; /* Hide overflowing content */
   text-overflow: ellipsis; /* Show ellipsis for overflow */
+}
+/deep/ .el-scrollbar__bar.is-horizontal{
+  height: 10px;
 }
 </style>
