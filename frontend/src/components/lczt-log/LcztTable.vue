@@ -39,7 +39,9 @@
         {{ formatStatus(row.state) }}
       </template>
     </el-table-column>
-    <el-table-column prop="source" label="来源" width="120">
+
+     <el-table-column v-if="operationSwitch" prop="serverId" label="接口类型" width="120"/>
+        <el-table-column prop="source" label="环境" width="120">
       <template #default="{ row }">
         {{ formatSource(row.source) }}
       </template>
@@ -49,7 +51,7 @@
     <el-table-column v-if="operationSwitch" prop="sessionId" label="sessionId" width="120"/>
     <el-table-column v-if="operationSwitch" prop="clientIp" label="clientIp" width="120"/>
     <el-table-column v-if="operationSwitch" prop="serverIp" label="serverIp" width="120"/>
-    <el-table-column v-if="operationSwitch" prop="serverId" label="serverId" width="120"/>
+
 
     <el-table-column
         fixed="right"

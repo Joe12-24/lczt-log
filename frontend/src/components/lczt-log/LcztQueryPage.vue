@@ -54,12 +54,20 @@
             </el-select>
           </el-form-item>
 
-          <el-form-item label="接口类型" prop="source">
+          <el-form-item label="接口类型" prop="serverId">
+            <el-select v-model="formInline.serverId" placeholder="" clearable>
+              <el-option label="全部" value="" />
+              <el-option label="bff" value="bff" />
+              <el-option label="business" value="business" />
+              <el-option label="adapter" value="adapter" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="环境" prop="source">
             <el-select v-model="formInline.source" placeholder="" clearable>
               <el-option label="全部" value="" />
-              <el-option label="凌志接口" value="newMall" />
-              <el-option label="综合理财" value="newMallTsdk" />
-              <el-option label="小贷" value="xiaodai" />
+              <el-option label="200" value="200" />
+              <el-option label="uat" value="uat" />
+              <el-option label="sit" value="sit" />
             </el-select>
           </el-form-item>
 
@@ -131,6 +139,7 @@ const formInline = reactive({
   cifAccount: '',
   functionId: '',
   serialId: '',
+  serverId: '',
   callTime: '',
   req: '',
   response: '',

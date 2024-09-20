@@ -1,9 +1,9 @@
 // 定义数据字典
 
 export const SOURCE_DICT = new Map<string, string>([
-  ['newMall', '凌志接口'],
-  ['newMallTsdk', '综合理财'],
-  ['xiaodai', '小贷']
+  ['sit', 'sit'],
+  ['uat', 'uat'],
+  ['200', '200']
 ]);
 
 export const STATUS_DICT = new Map<number, string>([
