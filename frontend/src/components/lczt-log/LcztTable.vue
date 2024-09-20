@@ -5,16 +5,18 @@
     :row-class-name="tableRowClassName"
     class="custom-table"
     border
+    header-align="center"
     scrollbar-always-on>
-    <el-table-column prop="clientId" label="客户代码" width="180" fixed="left" />
-    <el-table-column prop="businessAccount" label="资金账号" width="180" />
-    <el-table-column prop="cifAccount" label="一户通账号" width="180"/>
+    <el-table-column prop="clientId" label="客户代码" width="140" fixed="left" />
+    <el-table-column prop="businessAccount" label="资金账号" width="140" />
+    <el-table-column prop="cifAccount" label="一户通账号" width="140"/>
     <el-table-column prop="functionId" label="功能号" width="100"/>
-    <el-table-column prop="serialId" label="流水号" width="300"/>
+    <el-table-column prop="serialId" label="流水号" width="180"/>
     <el-table-column prop="callTime" label="响应时间" width="80"/>
 
-    <el-table-column prop="sendDate" label="日期" width="250"/>
-    <el-table-column prop="req" label="入参" width="120">
+    <el-table-column prop="sendDate" label="日期" width="200"/>
+    <el-table-column prop="serverIp" label="serverIp" width="120"/>
+    <el-table-column prop="req" label="入参" width="90">
       <template #default="{ row }">
         <el-popover placement="left" width="300" trigger="click">
           <template #reference>
@@ -34,40 +36,38 @@
         </el-popover>
       </template>
     </el-table-column>
-        <el-table-column prop="state" label="区分" width="80">
+        <el-table-column prop="state" label="区分" width="60">
       <template #default="{ row }">
         {{ formatStatus(row.state) }}
       </template>
     </el-table-column>
 
-     <el-table-column v-if="operationSwitch" prop="serverId" label="接口类型" width="120"/>
-        <el-table-column prop="source" label="环境" width="120">
+     <el-table-column  prop="serverId" label="接口类型" width="90"/>
+    <el-table-column v-if="operationSwitch" prop="clientIp" label="clientIp" width="120"/>
+        <!-- 这里添加折叠控制 -->
+    <el-table-column v-if="operationSwitch" prop="tradeId" label="tradeId" width="120"/>
+    <el-table-column v-if="operationSwitch" prop="sessionId" label="sessionId" width="120"/>
+
+     <el-table-column v-if="operationSwitch" prop="source" label="环境" width="120">
       <template #default="{ row }">
         {{ formatSource(row.source) }}
       </template>
     </el-table-column>
-        <!-- 这里添加折叠控制 -->
-    <el-table-column v-if="operationSwitch" prop="tradeId" label="tradeId" width="120"/>
-    <el-table-column v-if="operationSwitch" prop="sessionId" label="sessionId" width="120"/>
-    <el-table-column v-if="operationSwitch" prop="clientIp" label="clientIp" width="120"/>
-    <el-table-column v-if="operationSwitch" prop="serverIp" label="serverIp" width="120"/>
 
 
     <el-table-column
         fixed="right"
         label="操作"
         align="center"
-        :width="operationSwitch ? '0' : '80'"
+        :width="operationSwitch ? '0' : '0'"
       >
         <template #header>
           <div class="switchBox">
-            <p v-if="operationSwitch">折叠</p>
+<!--            <p v-if="operationSwitch">clientIp</p>-->
             <el-icon @click="switchChange" v-if="operationSwitch" size="20" color="#9bafbe">
-              <Expand
-            /></el-icon>
+              <Expand/></el-icon>
             <el-icon @click="switchChange" v-else-if="!operationSwitch" size="20" color="#9bafbe">
-              <Fold
-            /></el-icon>
+              <Fold/></el-icon>
           </div>
         </template>
 
@@ -126,7 +126,7 @@ const tableRowClassName = ({
   return 'warning-row'
 }
 //操作开关
-const operationSwitch = ref(true)
+const operationSwitch = ref(false)
 //
 const switchChange = () => {
   operationSwitch.value = !operationSwitch.value
@@ -160,8 +160,7 @@ const switchChange = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  p {
-    width: 90%;
-  }
+  height: 24px;
+
 }
 </style>
