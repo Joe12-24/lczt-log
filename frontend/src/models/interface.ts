@@ -14,7 +14,7 @@ export interface LogEntry {
 
 export interface LcztLogEntry {
   businessAccount?: string; // Optional if it might be null
-  serialNo?: string;
+  serialId?: string;
   clientId?: string;
   serverIp?: string;
   clientIp?: string;

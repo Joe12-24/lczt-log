@@ -42,8 +42,8 @@
             <el-input v-model="formInline.callTime" clearable />
           </el-form-item>
 
-          <el-form-item label="流水号" prop="serialNo">
-            <el-input v-model="formInline.serialNo" clearable />
+          <el-form-item label="流水号" prop="serialId">
+            <el-input v-model="formInline.serialId" clearable />
           </el-form-item>
 
           <el-form-item label="区分" prop="state">
@@ -117,6 +117,7 @@ import DataTable from '../lczt-log/LcztTable.vue'
 import {Eleme} from "@element-plus/icons-vue";
 import { ElLoading } from 'element-plus';
 import { Loading } from '@element-plus/icons-vue';
+import Test from "@/components/test.vue";
 
 // Form reference and data
 const formRef = ref<FormInstance>()
@@ -129,7 +130,7 @@ const formInline = reactive({
   businessAccount: '',
   cifAccount: '',
   functionId: '',
-  serialNo: '',
+  serialId: '',
   callTime: '',
   req: '',
   response: '',
@@ -232,7 +233,8 @@ const handleCurrentChange = (newPage: number) => {
   /* width: 150px; */
 }
 .query-page {
-  width: 1400px;
+  //width: 1400px;
+  width: 95%;
   margin: auto;
   flex-direction: column;
   padding: 20px;
@@ -241,6 +243,7 @@ const handleCurrentChange = (newPage: number) => {
 
 .form-container {
   margin-bottom: 20px;
+  width: 1600px;
 }
 .pagination-container {
   margin-top: 20px;
