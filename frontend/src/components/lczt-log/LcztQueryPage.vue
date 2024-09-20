@@ -18,8 +18,8 @@
             <el-input v-model="formInline.clientId" clearable />
           </el-form-item>
 
-          <el-form-item label="资金账号" prop="businessAccount">
-            <el-input v-model="formInline.businessAccount" clearable />
+          <el-form-item label="资金账号" prop="businAccount">
+            <el-input v-model="formInline.businAccount" clearable />
           </el-form-item>
 
           <el-form-item label="一户通" prop="cifAccount">
@@ -135,7 +135,7 @@ const defaultTime2: [Date, Date] = [
 ]
 const formInline = reactive({
   clientId: '',
-  businessAccount: '',
+  businAccount: '',
   cifAccount: '',
   functionId: '',
   serialId: '',

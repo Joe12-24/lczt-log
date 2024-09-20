@@ -8,7 +8,7 @@
     header-align="center"
     scrollbar-always-on>
     <el-table-column prop="clientId" label="客户代码" width="140" fixed="left" />
-    <el-table-column prop="businessAccount" label="资金账号" width="140" />
+    <el-table-column prop="businAccount" label="资金账号" width="140" />
     <el-table-column prop="cifAccount" label="一户通账号" width="140"/>
     <el-table-column prop="functionId" label="功能号" width="100"/>
     <el-table-column prop="serialId" label="流水号" width="180"/>
