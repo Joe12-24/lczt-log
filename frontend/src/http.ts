@@ -1,6 +1,7 @@
 // src/http.ts
 import axios from 'axios';
-
+import router from './router'; // 确保引入了正确的 router 实例
+import { nextTick } from 'vue';
 // 创建 Axios 实例
 const instance = axios.create({
   baseURL: 'http://10.168.103.6:8001/lczt-log-back/', // 根据实际情况修改
@@ -37,5 +38,20 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('authToken'); // 清除本地 token
 
+      // 使用 nextTick 确保页面跳转
+      nextTick(() => {
+        router.push({ name: 'Login' });
+      });
+    }
+    return Promise.reject(error);
+  }
+);
 export default instance;
